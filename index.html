@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>旅行記錄 · Lillian</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:     #0A0A0A;
+  --bg2:    #0F0F0F;
+  --card:   #131313;
+  --border: #222222;
+  --text:   #E8E2D9;
+  --muted:  #A09A94;
+  --dim:    #585350;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+header {
+  border-bottom: 1px solid var(--border);
+  padding: 40px 48px 36px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--text);
+}
+.logo em {
+  font-style: normal;
+  color: var(--muted);
+  font-size: 13px;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.12em;
+  margin-left: 16px;
+}
+.header-sub {
+  margin-top: 10px;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+/* ── MAIN ── */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px 48px 120px;
+}
+
+.section-label {
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 32px;
+}
+
+/* ── GRID ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2px;
+}
+
+/* ── TRIP CARD ── */
+.card {
+  position: relative;
+  display: block;
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 36px 32px 32px;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition: border-color .3s, background .3s;
+}
+.card:hover {
+  border-color: var(--accent);
+  background: #161616;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+  opacity: 0.7;
+  transition: opacity .3s;
+}
+.card:hover::before { opacity: 1; }
+
+.card-num {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: var(--accent);
+  opacity: 0.6;
+  margin-bottom: 20px;
+}
+.card-city {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.card-country {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+.card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.card-date {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+.card-nights {
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 0.1em;
+}
+.card-arrow {
+  position: absolute;
+  bottom: 28px; right: 28px;
+  font-size: 16px;
+  color: var(--accent);
+  opacity: 0.4;
+  transition: opacity .3s, transform .3s;
+}
+.card:hover .card-arrow {
+  opacity: 0.9;
+  transform: translate(3px, -3px);
+}
+
+/* ── PLACEHOLDER CARD ── */
+.card.placeholder {
+  opacity: 0.35;
+  pointer-events: none;
+  cursor: default;
+}
+.card.placeholder::before { display: none; }
+
+/* ── FOOTER ── */
+footer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px 48px;
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 0.15em;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 680px) {
+  header, main, footer { padding-left: 24px; padding-right: 24px; }
+  .card-city { font-size: 34px; }
+  .grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">旅行記錄 <em>TRAVEL ARCHIVE</em></div>
+  <div class="header-sub">Lillian &nbsp;·&nbsp; 所有旅程</div>
+</header>
+
+<main>
+  <div class="section-label">— 旅程列表 / TRIPS</div>
+  <div class="grid">
+
+    <!-- 巴黎 2026 -->
+    <a class="card" href="./paris-2026/" style="--accent:#C8A96E;">
+      <div class="card-num">01 / PARIS</div>
+      <div class="card-city">Paris</div>
+      <div class="card-country">法國 · France</div>
+      <div class="card-meta">
+        <div class="card-date">2026 · 待出發</div>
+        <div class="card-nights">EUR</div>
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+    <!-- 福岡 2025 -->
+    <a class="card placeholder" href="./fukuoka-2025/" style="--accent:#E8A0B4;">
+      <div class="card-num">02 / FUKUOKA</div>
+      <div class="card-city">福岡</div>
+      <div class="card-country">日本 · Japan</div>
+      <div class="card-meta">
+        <div class="card-date">2025</div>
+        <div class="card-nights">JPY</div>
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+    <!-- 港澳 2025 -->
+    <a class="card placeholder" href="./hk-2025/" style="--accent:#E05A28;">
+      <div class="card-num">03 / HK·MACAU</div>
+      <div class="card-city">港澳</div>
+      <div class="card-country">香港 · 澳門</div>
+      <div class="card-meta">
+        <div class="card-date">2025</div>
+        <div class="card-nights">HKD · MOP</div>
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+    <!-- 日本關東 2024 -->
+    <a class="card placeholder" href="./japan-2024/" style="--accent:#D4C8B8;">
+      <div class="card-num">04 / KANTŌ</div>
+      <div class="card-city">關東</div>
+      <div class="card-country">日本 · Japan</div>
+      <div class="card-meta">
+        <div class="card-date">2024</div>
+        <div class="card-nights">JPY</div>
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  <span>© Lillian · 私人旅行記錄</span>
+  <span>4 TRIPS</span>
+</footer>
+
+</body>
+</html>
