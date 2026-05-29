@@ -5,24 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>旅行記錄 · Lillian</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400&family=Noto+Serif+TC:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:     #0A0A0A;
-  --bg2:    #0F0F0F;
-  --card:   #131313;
-  --border: #222222;
-  --text:   #E8E2D9;
-  --muted:  #A09A94;
-  --dim:    #585350;
+  --color-ivoire:   #F5F0E8;
+  --color-gold:     #C9A96E;
+  --color-gold-dim: rgba(201,169,110,0.30);
+  --color-brume:    #9E9B93;
+  --color-charbon:  #2C2C2A;
+  --color-surface:  #FFFFFF;
+  --color-border:   rgba(44,44,42,0.10);
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-zh:      'Noto Serif TC', serif;
+  --font-ui:      'Jost', 'Inter', sans-serif;
+
+  --shadow-sm: 0 1px 4px rgba(44,44,42,0.06);
+  --shadow-md: 0 4px 16px rgba(44,44,42,0.08);
+
+  --transition-fast: 150ms ease;
+  --transition-base: 300ms ease;
+  --transition-slow: 600ms ease;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'DM Mono', monospace;
+  background: var(--color-ivoire);
+  color: var(--color-charbon);
+  font-family: var(--font-ui);
+  font-weight: 300;
   font-size: 13px;
   line-height: 1.6;
   min-height: 100vh;
@@ -30,53 +42,90 @@ body {
 
 /* ── HEADER ── */
 header {
-  border-bottom: 1px solid var(--border);
-  padding: 40px 48px 36px;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 48px 64px 40px;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
 }
+
+.logo-wrap {}
 .logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 28px;
+  font-family: var(--font-display);
+  font-size: 32px;
   font-weight: 300;
-  letter-spacing: 0.2em;
-  color: var(--text);
+  letter-spacing: 0.25em;
+  color: var(--color-charbon);
+  display: block;
+  line-height: 1;
+  margin-bottom: 8px;
 }
-.logo em {
-  font-style: normal;
-  color: var(--muted);
-  font-size: 13px;
-  font-family: 'DM Mono', monospace;
-  letter-spacing: 0.12em;
-  margin-left: 16px;
-}
-.header-sub {
-  margin-top: 10px;
+.logo-sub {
+  font-family: var(--font-ui);
   font-size: 10px;
-  letter-spacing: 0.3em;
+  font-weight: 300;
+  letter-spacing: 0.45em;
   text-transform: uppercase;
-  color: var(--dim);
+  color: var(--color-brume);
+}
+
+.header-right {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-brume);
+  text-align: right;
+}
+.header-right .count {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: var(--color-gold);
+  line-height: 1;
+  margin-bottom: 4px;
 }
 
 /* ── MAIN ── */
 main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 56px 48px 120px;
+  padding: 56px 64px 100px;
 }
 
+/* ── SECTION LABEL ── */
 .section-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.section-label span {
+  font-family: var(--font-ui);
   font-size: 10px;
-  letter-spacing: 0.35em;
+  font-weight: 300;
+  letter-spacing: 0.45em;
   text-transform: uppercase;
-  color: var(--dim);
-  margin-bottom: 32px;
+  color: var(--color-brume);
+  white-space: nowrap;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-gold-dim);
 }
 
 /* ── GRID ── */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 2px;
 }
 
@@ -84,175 +133,252 @@ main {
 .card {
   position: relative;
   display: block;
-  background: var(--card);
-  border: 1px solid var(--border);
-  padding: 36px 32px 32px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 44px 40px 40px;
   text-decoration: none;
   color: inherit;
   overflow: hidden;
-  transition: border-color .3s, background .3s;
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
 }
-.card:hover {
-  border-color: var(--accent);
-  background: #161616;
+.card:not(.placeholder):hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
-.card::before {
+
+.card::after {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--accent);
-  opacity: 0.7;
-  transition: opacity .3s;
+  bottom: 0; left: 40px; right: 40px;
+  height: 1px;
+  background: var(--color-gold-dim);
+  transform: scaleX(0);
+  transition: transform var(--transition-slow);
+  transform-origin: left;
 }
-.card:hover::before { opacity: 1; }
+.card:not(.placeholder):hover::after { transform: scaleX(1); }
 
-.card-num {
+.card-index {
+  font-family: var(--font-ui);
   font-size: 10px;
-  letter-spacing: 0.25em;
-  color: var(--accent);
-  opacity: 0.6;
-  margin-bottom: 20px;
+  font-weight: 300;
+  letter-spacing: 0.4em;
+  color: var(--color-gold);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
+.card-index::after {
+  content: '';
+  flex: 0 0 32px;
+  height: 1px;
+  background: var(--color-gold-dim);
+}
+
 .card-city {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 42px;
+  font-family: var(--font-display);
+  font-size: 52px;
   font-weight: 300;
   line-height: 1;
   letter-spacing: 0.04em;
-  color: var(--text);
-  margin-bottom: 6px;
+  color: var(--color-charbon);
+  margin-bottom: 4px;
 }
-.card-country {
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 28px;
+.card-city-zh {
+  font-family: var(--font-zh);
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  color: var(--color-brume);
+  margin-bottom: 32px;
 }
+
 .card-meta {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
 }
-.card-date {
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-}
-.card-nights {
-  font-size: 10px;
-  color: var(--dim);
+.card-year {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 300;
   letter-spacing: 0.1em;
+  color: var(--color-charbon);
 }
-.card-arrow {
-  position: absolute;
-  bottom: 28px; right: 28px;
-  font-size: 16px;
-  color: var(--accent);
-  opacity: 0.4;
-  transition: opacity .3s, transform .3s;
-}
-.card:hover .card-arrow {
-  opacity: 0.9;
-  transform: translate(3px, -3px);
+.card-currency {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-brume);
 }
 
-/* ── PLACEHOLDER CARD ── */
-.card.placeholder {
-  opacity: 0.35;
-  pointer-events: none;
-  cursor: default;
+.card-arrow {
+  position: absolute;
+  bottom: 36px; right: 40px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--color-gold);
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition: opacity var(--transition-base), transform var(--transition-base);
 }
-.card.placeholder::before { display: none; }
+.card:not(.placeholder):hover .card-arrow {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* ── PLACEHOLDER ── */
+.card.placeholder {
+  background: rgba(245,240,232,0.5);
+}
+.card.placeholder .card-city,
+.card.placeholder .card-city-zh,
+.card.placeholder .card-year,
+.card.placeholder .card-currency,
+.card.placeholder .card-index {
+  opacity: 0.3;
+}
+.placeholder-badge {
+  position: absolute;
+  top: 20px; right: 20px;
+  font-family: var(--font-ui);
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-brume);
+  border: 1px solid var(--color-border);
+  padding: 3px 8px;
+  border-radius: 2px;
+  opacity: 0.6;
+}
+
+/* ── ORNAMENT ── */
+.ornament {
+  text-align: center;
+  padding: 48px 0 0;
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--color-gold-dim);
+  letter-spacing: 0.5em;
+}
 
 /* ── FOOTER ── */
 footer {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 48px 48px;
-  border-top: 1px solid var(--border);
-  padding-top: 28px;
-  font-size: 10px;
-  color: var(--dim);
-  letter-spacing: 0.15em;
+  padding: 28px 64px;
+  border-top: 1px solid var(--color-border);
   display: flex;
+  align-items: center;
   justify-content: space-between;
+}
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  color: var(--color-brume);
+}
+.footer-copy {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  color: var(--color-brume);
+  opacity: 0.6;
 }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 680px) {
-  header, main, footer { padding-left: 24px; padding-right: 24px; }
-  .card-city { font-size: 34px; }
+@media (max-width: 900px) {
+  header, main, footer { padding-left: 32px; padding-right: 32px; }
   .grid { grid-template-columns: 1fr; }
+  .card-city { font-size: 42px; }
+}
+@media (max-width: 600px) {
+  header, main, footer { padding-left: 20px; padding-right: 20px; }
+  header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .header-right { text-align: left; }
 }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">旅行記錄 <em>TRAVEL ARCHIVE</em></div>
-  <div class="header-sub">Lillian &nbsp;·&nbsp; 所有旅程</div>
+  <div class="logo-wrap">
+    <span class="logo">旅行記錄</span>
+    <span class="logo-sub">Travel Archive &nbsp;·&nbsp; Lillian</span>
+  </div>
+  <div class="header-right">
+    <span class="count">4</span>
+    Voyages
+  </div>
 </header>
 
 <main>
-  <div class="section-label">— 旅程列表 / TRIPS</div>
+  <div class="section-label"><span>Trips / 旅程列表</span></div>
+
   <div class="grid">
 
     <!-- 巴黎 2026 -->
-    <a class="card" href="./paris-2026/" style="--accent:#C8A96E;">
-      <div class="card-num">01 / PARIS</div>
+    <a class="card" href="./paris-2026/">
+      <div class="card-index">01</div>
       <div class="card-city">Paris</div>
-      <div class="card-country">法國 · France</div>
+      <div class="card-city-zh">法國 · France</div>
       <div class="card-meta">
-        <div class="card-date">2026 · 待出發</div>
-        <div class="card-nights">EUR</div>
+        <div class="card-year">2026</div>
+        <div class="card-currency">EUR · 歐元</div>
       </div>
       <div class="card-arrow">↗</div>
     </a>
 
     <!-- 福岡 2025 -->
-    <a class="card placeholder" href="./fukuoka-2025/" style="--accent:#E8A0B4;">
-      <div class="card-num">02 / FUKUOKA</div>
-      <div class="card-city">福岡</div>
-      <div class="card-country">日本 · Japan</div>
+    <a class="card placeholder" href="./fukuoka-2025/">
+      <div class="placeholder-badge">即將上線</div>
+      <div class="card-index">02</div>
+      <div class="card-city">Fukuoka</div>
+      <div class="card-city-zh">日本 · 福岡</div>
       <div class="card-meta">
-        <div class="card-date">2025</div>
-        <div class="card-nights">JPY</div>
+        <div class="card-year">2025</div>
+        <div class="card-currency">JPY · 日圓</div>
       </div>
-      <div class="card-arrow">↗</div>
     </a>
 
     <!-- 港澳 2025 -->
-    <a class="card placeholder" href="./hk-2025/" style="--accent:#E05A28;">
-      <div class="card-num">03 / HK·MACAU</div>
-      <div class="card-city">港澳</div>
-      <div class="card-country">香港 · 澳門</div>
+    <a class="card placeholder" href="./hk-2025/">
+      <div class="placeholder-badge">即將上線</div>
+      <div class="card-index">03</div>
+      <div class="card-city">HK · Macau</div>
+      <div class="card-city-zh">香港 · 澳門</div>
       <div class="card-meta">
-        <div class="card-date">2025</div>
-        <div class="card-nights">HKD · MOP</div>
+        <div class="card-year">2025</div>
+        <div class="card-currency">HKD · MOP</div>
       </div>
-      <div class="card-arrow">↗</div>
     </a>
 
     <!-- 日本關東 2024 -->
-    <a class="card placeholder" href="./japan-2024/" style="--accent:#D4C8B8;">
-      <div class="card-num">04 / KANTŌ</div>
-      <div class="card-city">關東</div>
-      <div class="card-country">日本 · Japan</div>
+    <a class="card placeholder" href="./japan-2024/">
+      <div class="placeholder-badge">即將上線</div>
+      <div class="card-index">04</div>
+      <div class="card-city">Kantō</div>
+      <div class="card-city-zh">日本 · 關東</div>
       <div class="card-meta">
-        <div class="card-date">2024</div>
-        <div class="card-nights">JPY</div>
+        <div class="card-year">2024</div>
+        <div class="card-currency">JPY · 日圓</div>
       </div>
-      <div class="card-arrow">↗</div>
     </a>
 
   </div>
+
+  <div class="ornament">· · ·</div>
 </main>
 
 <footer>
-  <span>© Lillian · 私人旅行記錄</span>
-  <span>4 TRIPS</span>
+  <span class="footer-logo">Lys</span>
+  <span class="footer-copy">私人旅行記錄 &nbsp;·&nbsp; All Rights Reserved</span>
 </footer>
 
 </body>
