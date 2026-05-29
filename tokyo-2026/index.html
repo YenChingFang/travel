@@ -54,8 +54,7 @@ body {
 /* ── HEADER ── */
 .site-header {
   background: var(--color-ivoire);
-  border-bottom: 1px solid var(--color-border);
-  padding: 18px 48px 0;
+  padding: 18px 48px 18px;
 }
 .header-top {
   display: flex; align-items: center; gap: 20px; margin-bottom: 14px;
@@ -75,7 +74,13 @@ body {
 .header-flag { margin-left: auto; font-size: 20px; }
 
 /* ── TABS ── */
-.tabs { display: flex; overflow-x: auto; scrollbar-width: none; gap: 4px; }
+.tabs-sticky {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(245,240,232,0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+}
+.tabs { display: flex; overflow-x: auto; scrollbar-width: none; gap: 4px; padding: 0 48px; }
 .tabs::-webkit-scrollbar { display: none; }
 .tab {
   flex-shrink: 0; padding: 10px 24px 12px;
@@ -236,6 +241,7 @@ body {
   .info-item { border-right: none; border-bottom: 1px solid var(--color-border); }
   .info-item:last-child { border-bottom: none; }
   .tab { padding: 10px 16px 12px; }
+  .tabs { padding: 0 20px; }
 }
 </style>
 </head>
@@ -251,6 +257,9 @@ body {
     <div class="logo">Tokyo <span class="logo-sub">· 2026</span></div>
     <div class="header-flag">🇯🇵</div>
   </div>
+</header>
+
+<div class="tabs-sticky">
   <nav class="tabs">
     <button class="tab active" onclick="showDay(0,this)">
       <span class="day-num">D1</span><span class="day-sub">6/11 四</span>
@@ -268,7 +277,7 @@ body {
       <span class="day-num">D5</span><span class="day-sub">6/15 一</span>
     </button>
   </nav>
-</header>
+</div>
 
 <main class="main">
 
