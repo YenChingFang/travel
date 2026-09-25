@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shanghai 2026 · 外灘・靜安・北外灘</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400&family=Noto+Serif+TC:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --color-ivoire:    #F5F0E8;
+  --color-ivoire2:   #EDE8DF;
+  --color-gold:      #C9A96E;
+  --color-gold-dim:  rgba(201,169,110,0.22);
+  --color-gold-bg:   rgba(201,169,110,0.10);
+  --color-brume:     #7A7570;
+  --color-brume-lt:  #9E9B93;
+  --color-charbon:   #1E1C1A;
+  --color-surface:   #FFFFFF;
+  --color-border:    rgba(44,44,42,0.13);
+  --color-border2:   rgba(44,44,42,0.09);
+
+  /* category colours — light palette */
+  --cat-café:    #4A7C59;  --cat-café-bg:   rgba(74,124,89,0.08);
+  --cat-lunch:   #8B6914;  --cat-lunch-bg:  rgba(201,169,110,0.12);
+  --cat-dinner:  #7A3B4A;  --cat-dinner-bg: rgba(180,80,100,0.08);
+  --cat-shop:    #3A5F8A;  --cat-shop-bg:   rgba(58,95,138,0.08);
+  --cat-hotel:   #6B6B6B;  --cat-hotel-bg:  rgba(107,107,107,0.08);
+  --cat-flight:  #2B6B8A;  --cat-flight-bg: rgba(43,107,138,0.08);
+  --cat-transit: #5A4A7A;  --cat-transit-bg:rgba(90,74,122,0.08);
+  --cat-sweets:  #8A4A6A;  --cat-sweets-bg: rgba(138,74,106,0.08);
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-zh:      'Noto Serif TC', serif;
+  --font-ui:      'Jost', 'Inter', sans-serif;
+
+  --shadow-sm: 0 1px 6px rgba(44,44,42,0.06);
+  --shadow-md: 0 4px 20px rgba(44,44,42,0.09);
+  --radius: 3px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--color-ivoire);
+  color: var(--color-charbon);
+  font-family: var(--font-ui);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.site-header {
+  background: var(--color-ivoire);
+  padding: 18px 48px 18px;
+}
+.header-top {
+  display: flex; align-items: center; gap: 20px; margin-bottom: 14px;
+}
+.back-link {
+  font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--color-brume); text-decoration: none; transition: color .2s;
+  display: flex; align-items: center; gap: 6px;
+}
+.back-link:hover { color: var(--color-gold); }
+.header-divider { color: var(--color-brume-lt); font-size: 16px; }
+.logo {
+  font-family: var(--font-display);
+  font-size: 26px; font-weight: 300; letter-spacing: 0.18em; color: var(--color-charbon);
+}
+.logo-sub { color: var(--color-brume); font-size: 15px; font-family: var(--font-ui); letter-spacing: 0.1em; font-weight: 300; }
+.header-flag { margin-left: auto; font-size: 20px; }
+
+/* ── TABS ── */
+.tabs-sticky {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(245,240,232,0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+}
+.tabs { display: flex; overflow-x: auto; scrollbar-width: none; gap: 4px; padding: 0 48px; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  flex-shrink: 0; padding: 10px 24px 12px;
+  background: none; border: none; border-bottom: 2px solid transparent;
+  color: var(--color-brume); cursor: pointer; font-family: var(--font-ui);
+  font-size: 13px; letter-spacing: 0.06em; transition: all .2s; white-space: nowrap;
+  font-weight: 300;
+}
+.tab:hover { color: var(--color-charbon); }
+.tab.active { color: var(--color-gold); border-bottom-color: var(--color-gold); }
+.tab .day-num {
+  display: block; font-size: 19px; font-weight: 400; margin-bottom: 2px;
+  font-family: var(--font-display); letter-spacing: 0.05em; color: var(--color-charbon);
+}
+.tab.active .day-num { color: var(--color-gold); }
+.tab .day-sub { display: block; font-size: 11px; letter-spacing: 0.10em; }
+
+/* ── MAIN ── */
+.main { max-width: 900px; margin: 0 auto; padding: 52px 48px 160px; }
+
+/* ── TRIP INFO BAR ── */
+.trip-info-bar {
+  display: flex; gap: 0; flex-wrap: wrap;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  margin-bottom: 56px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.info-item {
+  flex: 1; min-width: 140px;
+  padding: 20px 24px;
+  border-right: 1px solid var(--color-border);
+}
+.info-item:last-child { border-right: none; }
+.info-label {
+  font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--color-brume); margin-bottom: 7px; display: block;
+}
+.info-value {
+  font-family: var(--font-display); font-size: 22px; font-weight: 300;
+  color: var(--color-charbon); letter-spacing: 0.06em; display: block;
+}
+.info-value.accent { color: var(--color-gold); }
+
+/* ── DAY SECTION ── */
+.day-section { display: none; }
+.day-section.active { display: block; }
+
+/* ── DAY HEADER ── */
+.day-header {
+  display: flex; align-items: flex-end; gap: 28px;
+  padding-bottom: 28px; margin-bottom: 36px;
+  border-bottom: 1px solid var(--color-border);
+}
+.day-date {
+  font-family: var(--font-display);
+  font-size: 88px; font-weight: 300; line-height: 0.9;
+  color: var(--color-gold); letter-spacing: -0.02em;
+  opacity: 0.75; flex-shrink: 0;
+}
+.day-info { padding-bottom: 6px; flex: 1; }
+.day-weekday {
+  font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--color-brume); margin-bottom: 6px;
+}
+.day-label {
+  font-family: var(--font-display); font-size: 40px; font-weight: 300;
+  color: var(--color-charbon); letter-spacing: 0.04em; line-height: 1.1;
+}
+.day-summary {
+  margin-top: 10px; font-size: 14px; color: var(--color-brume);
+  line-height: 1.8; font-style: italic;
+}
+.day-hotel-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 12px;
+  font-size: 12px; letter-spacing: 0.12em;
+  color: var(--color-brume);
+  padding: 4px 12px 4px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  background: rgba(255,255,255,0.6);
+}
+.day-hotel-badge svg { opacity: 0.6; flex-shrink: 0; }
+
+/* ── TIMELINE ── */
+.timeline { display: flex; flex-direction: column; gap: 0; }
+
+.time-block {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 0 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--color-border2);
+  align-items: start;
+}
+.time-block:last-child { border-bottom: none; }
+.time-block:hover { background: rgba(201,169,110,0.03); margin: 0 -16px; padding: 18px 16px; border-radius: 4px; }
+
+.time-label {
+  font-size: 13px; color: var(--color-brume);
+  letter-spacing: 0.04em; padding-top: 4px;
+  text-align: right; font-variant-numeric: tabular-nums;
+}
+
+.time-content { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; }
+
+/* ── CATEGORY BADGE ── */
+.cat {
+  display: inline-flex; align-items: center;
+  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 2px;
+  flex-shrink: 0; font-weight: 400; line-height: 1;
+}
+.cat-café    { color: var(--cat-café);    background: var(--cat-café-bg); }
+.cat-lunch   { color: var(--cat-lunch);   background: var(--cat-lunch-bg); }
+.cat-dinner  { color: var(--cat-dinner);  background: var(--cat-dinner-bg); }
+.cat-shop    { color: var(--cat-shop);    background: var(--cat-shop-bg); }
+.cat-hotel   { color: var(--cat-hotel);   background: var(--cat-hotel-bg); }
+.cat-flight  { color: var(--cat-flight);  background: var(--cat-flight-bg); }
+.cat-transit { color: var(--cat-transit); background: var(--cat-transit-bg); }
+.cat-sweets  { color: var(--cat-sweets);  background: var(--cat-sweets-bg); }
+
+/* ── ACTIVITY ── */
+.activity-name {
+  font-size: 17px; color: var(--color-charbon);
+  letter-spacing: 0.02em; line-height: 1.4; font-weight: 400;
+}
+.activity-note {
+  font-size: 13.5px; color: var(--color-brume);
+  letter-spacing: 0.02em; width: 100%; margin-top: 4px; line-height: 1.65;
+}
+
+/* ── MAP LINK ── */
+.map-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; color: var(--color-brume);
+  text-decoration: none; letter-spacing: 0.04em;
+  border-bottom: 1px solid transparent;
+  transition: color .2s, border-color .2s;
+  margin-left: 2px; padding-bottom: 1px;
+}
+.map-link:hover { color: var(--color-gold); border-bottom-color: var(--color-gold); }
+.map-link svg { opacity: 0.6; flex-shrink: 0; }
+.map-link:hover svg { opacity: 1; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 720px) {
+  .site-header { padding: 14px 20px 0; }
+  .main { padding: 32px 20px 100px; }
+  .day-date { font-size: 64px; }
+  .day-label { font-size: 28px; }
+  .time-block { grid-template-columns: 52px 1fr; gap: 0 14px; }
+  .activity-name { font-size: 15px; }
+  .trip-info-bar { flex-direction: column; }
+  .info-item { border-right: none; border-bottom: 1px solid var(--color-border); }
+  .info-item:last-child { border-bottom: none; }
+  .tab { padding: 10px 16px 12px; }
+  .tabs { padding: 0 20px; }
+}
+
+.stars { font-size: 11px; color: var(--color-gold); letter-spacing: 0.05em; margin-left: 4px; }
+
+/* ── WISHLIST ── */
+.wishlist { margin-top: 72px; }
+.wishlist-label {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 20px;
+  font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--color-brume);
+}
+.wishlist-label::after { content: ''; flex: 1; height: 1px; background: var(--color-gold-dim); }
+.wishlist .time-block { grid-template-columns: 1fr; }
+
+/* ── FOOTER ── */
+footer {
+  max-width: 900px; margin: 0 auto; padding: 28px 48px 48px;
+  border-top: 1px solid var(--color-border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-logo { font-family: var(--font-display); font-size: 16px; letter-spacing: 0.3em; color: var(--color-brume); }
+.footer-copy { font-size: 11px; letter-spacing: 0.22em; color: var(--color-brume); opacity: 0.6; }
+@media (max-width: 720px) { footer { padding: 24px 20px 40px; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-top">
+    <a class="back-link" href="../">
+      <svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M11 5H1M1 5L5 1M1 5L5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      旅行記錄
+    </a>
+    <span class="header-divider">/</span>
+    <div class="logo">Shanghai <span class="logo-sub">· 2026 · 10/15 – 10/18</span></div>
+    <div class="header-flag">🇨🇳</div>
+  </div>
+</header>
+
+<div class="tabs-sticky">
+  <nav class="tabs">
+    <button class="tab active" onclick="showDay(0,this)">
+      <span class="day-num">D1</span><span class="day-sub">10/15 四</span>
+    </button>
+    <button class="tab" onclick="showDay(1,this)">
+      <span class="day-num">D2</span><span class="day-sub">10/16 五</span>
+    </button>
+    <button class="tab" onclick="showDay(2,this)">
+      <span class="day-num">D3</span><span class="day-sub">10/17 六</span>
+    </button>
+    <button class="tab" onclick="showDay(3,this)">
+      <span class="day-num">D4</span><span class="day-sub">10/18 日</span>
+    </button>
+  </nav>
+</div>
+
+<main class="main">
+
+  <!-- ── D1 ── -->
+  <section class="day-section active" id="day-0">
+    <div class="day-header">
+      <div class="day-date">15</div>
+      <div class="day-info">
+        <div class="day-weekday">Thursday · October</div>
+        <div class="day-label">抵達・上海</div>
+        <div class="day-summary">清晨出發，上午落地浦東，入住錦江。晚間以無蟹居的蟹宴揭開秋季上海。</div>
+        <div class="day-hotel-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          錦江
+        </div>
+      </div>
+    </div>
+    <div class="timeline">
+
+      <div class="time-block">
+        <div class="time-label">05:30</div>
+        <div class="time-content">
+          <span class="cat cat-transit">接駁</span>
+          <span class="activity-name">機場接送</span>
+        </div>
+      </div>
+
+      <div class="time-block">
+        <div class="time-label">08:00</div>
+        <div class="time-content">
+          <span class="cat cat-flight">起飛</span>
+          <span class="activity-name">台灣 ✈ 上海</span>
+        </div>
+      </div>
+
+      <div class="time-block">
+        <div class="time-label">10:00</div>
+        <div class="time-content">
+          <span class="cat cat-flight">抵達</span>
+          <span class="activity-name">落地・入境</span>
+        </div>
+      </div>
+
+      <div class="time-block">
+        <div class="time-label">—</div>
+        <div class="time-content">
+          <span class="cat cat-hotel">住宿</span>
+          <span class="activity-name">前往・入住 錦江
+            <a class="map-link" href="https://maps.google.com/?q=錦江飯店+上海+茂名南路" target="_blank">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>地圖
+            </a>
+          </span>
+        </div>
+      </div>
+
+      <div class="time-block">
+        <div class="time-label">18:30</div>
+        <div class="time-content">
+          <span class="cat cat-dinner">晚餐</span>
+          <span class="activity-name">無蟹居
+            <a class="map-link" href="https://maps.google.com/?q=無蟹居+上海+淮海路" target="_blank">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>地圖
+            </a>
+          </span>
+          <span class="activity-note">蟹料理專門・蟹粉、蟹黃主題</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── D2 ── -->
+  <section class="day-section" id="day-1">
+    <div class="day-header">
+      <div class="day-date">16</div>
+      <div class="day-info">
+        <div class="day-weekday">Friday · October</div>
+        <div class="day-label">雲和・外灘</div>
+        <div class="day-summary">午間一碗雲和麵館，傍晚移步外灘華爾道夫，在 Ling Long 品味當代中菜。</div>
+        <div class="day-hotel-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          錦江
+        </div>
+      </div>
+    </div>
+    <div class="timeline">
+
+      <div class="time-block">
+        <div class="time-label">11:00</div>
+        <div class="time-content">
+          <span class="cat cat-lunch">午餐</span>
+          <span class="activity-name">雲和麵館
+            <a class="map-link" href="https://maps.google.com/?q=雲和麵館+上海" target="_blank">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>地圖
+            </a>
+          </span>
+        </div>
+      </div>
+
+      <div class="time-block">
+        <div class="time-label">17:30</div>
+        <div class="time-content">
+          <span class="cat cat-dinner">晚餐</span>
+          <span class="activity-name">Ling Long 玲瓏 <span class="stars">★</span>
+            <a class="map-link" href="https://maps.google.com/?q=Ling+Long+Waldorf+Astoria+Shanghai+on+the+Bund" target="_blank">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>地圖
+            </a>
+          </span>
+          <span class="activity-note">外灘華爾道夫酒店 1F・米其林 2026 一星</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── D3 ── -->
+  <section class="day-section" id="day-2">
+    <div class="day-header">
+      <div class="day-date">17</div>
+      <div class="day-info">
+        <div class="day-weekday">Saturday · October</div>
+        <div class="day-label">愚園路・南陽路</div>
+        <div class="day-summary">午餐福和慧的四季蔬食，晚上在貝聿銘祖宅貝軒大公館裡的榮府宴。</div>
+        <div class="day-hotel-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          錦江
+        </div>
+      </div>
+    </div>
+    <div class="timeline">
+
+      <div class="time-block">
+        <div class="time-label">11:30</div>
+        <div class="time-content">
+          <span class="cat cat-lunch">午餐</span>
+          <span class="activity-name">福和慧 <span class="stars">★★</span>
+            <a class="map-link" href="https://maps.google.com/?q=福和慧+上海+愚園路1037號" target="_blank">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>地圖
+            </a>
+          </span>
+          <span class="activity-note">愚園路 1037 號・中式素食・米其林 2026 二星</span>
+        </div>
+      </div>
+
+      <div class="time-block">
+        <div class="time-label">18:00</div>
+        <div class="time-content">
+          <span class="cat cat-dinner">晚餐</span>
+          <span class="activity-name">榮府宴 <span class="stars">★★</span>
+            <a class="map-link" href="https://maps.google.com/?q=荣府宴+上海+南阳路170号" target="_blank">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>地圖
+            </a>
+          </span>
+          <span class="activity-note">南陽路 170 號 貝軒大公館・台州海鮮・全包廂・時間待確認</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── D4 ── -->
+  <section class="day-section" id="day-3">
+    <div class="day-header">
+      <div class="day-date">18</div>
+      <div class="day-info">
+        <div class="day-weekday">Sunday · October</div>
+        <div class="day-label">北外灘・回程</div>
+        <div class="day-summary">退房後登上北外灘來福士 56 樓，以江景閩菜作為最後一餐，晚間飛回台灣。</div>
+        <div class="day-hotel-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          退房・回台灣
+        </div>
+      </div>
+    </div>
+    <div class="timeline">
+
+      <div class="time-block">
+        <div class="time-label">11:30</div>
+        <div class="time-content">
+          <span class="cat cat-lunch">午餐</span>
+          <span class="activity-name">遇外灘 SKYLINE
+            <a class="map-link" href="https://maps.google.com/?q=遇外灘+SKYLINE+上海+北外灘來福士" target="_blank">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>地圖
+            </a>
+          </span>
+          <span class="activity-note">北外灘來福士 西塔 56F・高空閩菜・窗景位需提前預約</span>
+        </div>
+      </div>
+
+      <div class="time-block">
+        <div class="time-label">19:40</div>
+        <div class="time-content">
+          <span class="cat cat-flight">起飛</span>
+          <span class="activity-name">上海 ✈ 台灣</span>
+        </div>
+      </div>
+
+      <div class="time-block">
+        <div class="time-label">21:45</div>
+        <div class="time-content">
+          <span class="cat cat-flight">抵達</span>
+          <span class="activity-name">回到台灣 🏠</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── WISHLIST ── -->
+  <section class="wishlist">
+    <div class="wishlist-label">口袋清單・待排入</div>
+    <div class="timeline">
+
+      <div class="time-block">
+        <div class="time-content">
+          <span class="cat cat-shop">文化</span>
+          <span class="activity-name">上海博物館
+            <a class="map-link" href="https://maps.google.com/?q=上海博物館+人民廣場" target="_blank">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>地圖
+            </a>
+          </span>
+          <span class="activity-note">需透過微信小程序預約</span>
+        </div>
+      </div>
+
+      <div class="time-block">
+        <div class="time-content">
+          <span class="cat cat-shop">文化</span>
+          <span class="activity-name">浦東美術館
+            <a class="map-link" href="https://maps.google.com/?q=浦東美術館+上海" target="_blank">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>地圖
+            </a>
+          </span>
+          <span class="activity-note">下午入館，留到傍晚看外灘夜景</span>
+        </div>
+      </div>
+
+      <div class="time-block">
+        <div class="time-content">
+          <span class="cat cat-hotel">建築</span>
+          <span class="activity-name">馬勒別墅
+            <a class="map-link" href="https://maps.google.com/?q=馬勒別墅+上海+陝西南路" target="_blank">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>地圖
+            </a>
+          </span>
+          <span class="activity-note">挪威童話風格老洋房・現為精品酒店</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span class="footer-logo">Lys</span>
+  <span class="footer-copy">Shanghai 2026 &nbsp;·&nbsp; CNY</span>
+</footer>
+
+<script>
+function showDay(index, btn) {
+  document.querySelectorAll('.day-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('day-' + index).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
